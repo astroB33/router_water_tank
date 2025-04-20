@@ -35,6 +35,8 @@ The water_tank_power_handler deals with the dimmer and 4 relays with the followi
 * If the requested power is in 1600W .. 2400W, then 2 relays are used + the dimmer for the "power - 1600W".
 * If the requested power is greater than 2400W, then 3 relays are used + the dimmer is turned off (the relay associated the the dimmer is turned off).
 
+The power of the SSR + Zero crossing is managed by the forked `RBDDimmer` project, that updates this library for the latest Arduino API.
+
 A minimal dimmer power can be set, so the dimmer is only used if the requested power for the dimmer exceeds this power. E.g. if the minimum is set to 100W, then the dimmer not used when the total power is 50W, 850W or 1650W.
 
 power_manager
@@ -47,14 +49,14 @@ The power_manager managers the water_tank_power_handler with the following logic
 * Periodically (configurable), the anti-legionelosis temperature (configurable) is used during night time. The period is reset if the temperature is reached during day time.
 * A configurable inhibition time can also be set (e.g. during holidays) : only the night heating is inhibited, the day time routing is still performed.
 * If time can't be retrieved, maximal heating is applied.
-* Callbacks can be provided to manage the rurning on and off the overproduction power retrieval.
+* Callbacks can be provided to manage to turn on and off the overproduction power retrieval.
 
 router_water_tank.ino
 ---------------------
 
 Implements the following features:
 * Watchdog and ntp time.
-* Periodic temperature retrieval : As many as needed DallasTemperature in daisy chain can be used, the average values is computed, excluding invalid values. If no valid valud is retieved, just wait for the next period.
-* Implementation of the callbacks to request the overproduction power retrieval and handles the reception of the value. My other project is used to retrieve the power value over the network but it can be changed to read it locally.
+* Periodic temperature retrieval : As many as needed DallasTemperature in daisy chain can be used, the average values is computed, excluding invalid values. If no valid value is retieved, just wait for the next period.
+* Implementation of the callbacks to request the overproduction power retrieval and handles the reception of the value. The `power_reader` project is used to retrieve the power value over the network but it can be changed to read it locally.
 * Periodic trigger of `onRefresh` of the power_manager.
-* Diplays on a HTML page various info and enables the change some settings.
+* Diplays on a HTML page various info and enables to change some settings.
