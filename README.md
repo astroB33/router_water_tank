@@ -17,7 +17,11 @@ Details
 
 The ESP32 is powered by though the USB port, delivering 5V.
 The ESP32 3.3V power output is used to power the temperature sensors, the SRD relays, the triac (SSR relay).
-The ESP32 inputs/outputs (3.3V) are used to read values (triac, sensor) and enable the relays
+The ESP32 inputs/outputs (3.3V) are used to read values (triac, sensor) and enable the relays.
+
+Following wiring is used in this project.
+
+![Wiring](wiring.png?raw=true "Wiring")
 
 water_tank_power_handler
 ------------------------
