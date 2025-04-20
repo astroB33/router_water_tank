@@ -5,7 +5,7 @@ Uses a dimmer to route the overproduction of solar panels to the water tank.
 
 Used hardware:
 * Controller : [esp32](https://www.upesy.fr/)
-* Dimmer : SSR relay with zero crossing and thermal dissipator, take a much bigger value than needed (can be found on AliExpress)
+* Dimmer : Dimmer or random SSR relay with zero crossing information and thermal dissipator, take a much bigger value than needed (can be found on AliExpress)
 * Temperature sensors : non waterproof DS18B20 (as many as needed) + one plugable board (can be found on AliExpress)
 * Relays : plugable SRD-03VDC (can be found on AliExpress)
 * Power : 5V USB power + USB cable (can be found on AliExpress)
