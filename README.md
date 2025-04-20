@@ -3,8 +3,21 @@ Overview
 
 Uses a dimmer to route the overproduction of solar panels to the water tank.
 
+Used hardware:
+* Controller : [esp32](https://www.upesy.fr/)
+* Dimmer : SSR relay with zero crossing and thermal dissipator, take a much bigger value than needed (can be found on AliExpress)
+* Temperature sensors : non waterproof DS18B20 (as many as needed) + one plugable board (can be found on AliExpress)
+* Relays : plugable SRD-03VDC (can be found on AliExpress)
+* Power : 5V USB power + USB cable (can be found on AliExpress)
+
+![Alt text](html_display.png?raw=true "HTML display")
+
 Details
 =======
+
+The ESP32 is powered by though the USB port, delivering 5V.
+The ESP32 3.3V power output is used to power the temperature sensors, the SRD relays, the triac (SSR relay).
+The ESP32 inputs/outputs (3.3V) are used to read values (triac, sensor) and enable the relays
 
 water_tank_power_handler
 ------------------------
@@ -18,7 +31,7 @@ The water_tank_power_handler deals with the dimmer and 4 relays with the followi
 * If the requested power is in 1600W .. 2400W, then 2 relays are used + the dimmer for the "power - 1600W".
 * If the requested power is greater than 2400W, then 3 relays are used + the dimmer is turned off (the relay associated the the dimmer is turned off).
 
-A minium power can if the set, then the dimmer is only used if the requested power for the dimmer exceeds this power. E.g. if the minimum is set to 100W, then the dimmer not used when the total power is 50W, 850W, 1650W.
+A minimal dimmer power can be set, so the dimmer is only used if the requested power for the dimmer exceeds this power. E.g. if the minimum is set to 100W, then the dimmer not used when the total power is 50W, 850W or 1650W.
 
 power_manager
 -------------
